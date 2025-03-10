@@ -1,0 +1,15 @@
+services:
+  solid-cqrs-clean-architecture:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: solid-cqrs-clean-architecture
+    environment:
+      - SPRING_PROFILES_ACTIVE=qa
+    ports:
+      - "8085:8080"
+    restart: unless-stopped
+    networks:
+      - public
+networks:
+  public:

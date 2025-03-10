@@ -1,0 +1,217 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "solid-cqrs-clean-architecture",
+    "description": "API RESTFul with SOLID principles, CQRS pattern and Clean Architecture",
+    "termsOfService": "https://opensource.org/licenses/MIT",
+    "contact": {
+      "name": "Raul Bolivar Navas",
+      "email": "rasysbox@hotmail.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "0.0.1-SNAPSHOT"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8085",
+      "description": "API RESTFul with SOLID principles, CQRS pattern and Clean Architecture"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users Queries",
+      "description": "User Queries Operations"
+    },
+    {
+      "name": "Users Command",
+      "description": "User Command Operations"
+    }
+  ],
+  "paths": {
+    "/api/v1/users/create-user": {
+      "post": {
+        "tags": [
+          "Users Command"
+        ],
+        "summary": "Create user",
+        "description": "Create user",
+        "operationId": "createUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/update-user/{id}": {
+      "patch": {
+        "tags": [
+          "Users Command"
+        ],
+        "summary": "Update user",
+        "description": "Update user",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/find-user-by-id/{id}": {
+      "get": {
+        "tags": [
+          "Users Queries"
+        ],
+        "summary": "Find user by ID",
+        "description": "Find user by ID",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/find-all-users": {
+      "get": {
+        "tags": [
+          "Users Queries"
+        ],
+        "summary": "Find all users",
+        "description": "Find all users",
+        "operationId": "findAllUsers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/delete-user/{id}": {
+      "delete": {
+        "tags": [
+          "Users Command"
+        ],
+        "summary": "Delete user",
+        "description": "Delete user",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserRequestDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "john.doe@email.com"
+          }
+        }
+      }
+    }
+  }
+}
