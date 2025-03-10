@@ -32,6 +32,20 @@ List of available endpoints:
 
 * Note: The Postman collection is available in the `postman` folder with the name `cqrs-clean-architecture-mapstruct-jpa.postman_collection.json` and Swagger.json is available with the name `swagger.json`.
 
+### Unit tests
+
+The unit tests are available in the `src/test/java` folder.
+
+```bash
+mvn clean package
+```
+
+- Output JoCoCo Report: `target/site/jacoco/index.html`
+
+### Integration tests
+
+The integration tests are available in the `src/test/java` folder.
+
 ### Author
 
 - **Raul Bolivar Navas** - [rasysbox](https://github.com/raulrobinson/cqrs-clean-architecture-mapstruct-jpa)

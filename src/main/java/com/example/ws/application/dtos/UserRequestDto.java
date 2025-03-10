@@ -9,6 +9,11 @@ public class UserRequestDto {
     @Schema(description = "User email", example = "john.doe@email.com")
     private String email;
 
+    public UserRequestDto(String newName, String mail) {
+        this.name = newName;
+        this.email = mail;
+    }
+
     public String getName() {
         return name;
     }
