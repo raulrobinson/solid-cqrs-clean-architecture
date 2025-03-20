@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
@@ -22,10 +21,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
-                .csrf(AbstractHttpConfigurer::disable)
+                .addFilterBefore(new CsrfFilter(), ChannelProcessingFilter.class)
+
+                // [AUTHORIZATION]
+                // The authorizeHttpRequests method allows configuring the
+                // authorization rules for the application.
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
 
                         // [SWAGGER]
+                        // Swagger is a set of open-source tools built around the OpenAPI Specification
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/webjars/**").permitAll()
@@ -33,22 +37,40 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, basePath +"/users/*").permitAll()
-                        .requestMatchers(HttpMethod.GET, basePath + "/users").permitAll()
-                        .requestMatchers(HttpMethod.POST, basePath +"/users/create-user").permitAll()
-                        .requestMatchers(HttpMethod.PATCH, basePath +"/users/update-user/*").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, basePath +"/users/delete-user/*").permitAll()
-//                        .requestMatchers(basePath + "/*").permitAll()
+                        // [CLIENTS]
+                        // Clients operations are allowed for all users
+                        .requestMatchers(HttpMethod.GET, basePath + "/clients/dni/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, basePath + "/clients/client-code/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, basePath + "/clients").permitAll()
+                        .requestMatchers(HttpMethod.POST, basePath + "/clients").permitAll()
+                        .requestMatchers(HttpMethod.PUT, basePath + "/clients/*").permitAll()
+                        .requestMatchers(HttpMethod.PATCH, basePath + "/clients/status/*").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, basePath + "/clients/*").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .csrf(csrf -> csrf
-//                        .ignoringRequestMatchers("/h2-console/**") // Disable CSRF for H2 Console
-//                )
+
+                // [CSRF]
+                // Cross-Site Request Forgery (CSRF) is an attack that forces an
+                // end user to execute unwanted actions on
+                // a web application in which they're currently authenticated.
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers(
+                                "/h2-console/**",
+                                basePath + "/clients",
+                                basePath + "/clients/*",
+                                basePath + "/clients/status/*"
+                        )
+                )
+
+                // [FRAME OPTIONS]
+                // The X-Frame-Options HTTP response header can be used to indicate
+                // whether a browser should be allowed to render a page in a
+                // <frame>, <iframe>, <embed> or <object>.
                 .headers(headers -> headers
-                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin) // Permit all frames from the same origin
+                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
                 );
-//                .httpBasic(withDefaults());
 
         return http.build();
     }
+
 }

@@ -22,12 +22,18 @@ public class SwaggerConfig {
             @Value("${openapi.service.contact.email}") String contactEmail,
             @Value("${openapi.service.contact.name}") String contactName,
             @Value("${openapi.service.host}") String host) {
+
+        // Contact information for the service
         Contact contact = new Contact()
                 .email(contactEmail)
                 .name(contactName);
+
+        // License information for the service
         License mitLicense = new License()
                 .name("MIT License")
                 .url("https://opensource.org/licenses/MIT");
+
+        // Service information for the OpenAPI specification
         Info info = new Info()
                 .title(serviceTitle)
                 .version(serviceVersion)
@@ -35,6 +41,7 @@ public class SwaggerConfig {
                 .description(description)
                 .termsOfService("https://opensource.org/licenses/MIT")
                 .license(mitLicense);
+
         return new OpenAPI()
                 .servers(List.of(new Server().url(host).description(description)))
                 .info(info);

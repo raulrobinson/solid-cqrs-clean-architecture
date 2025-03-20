@@ -15,8 +15,8 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class GlobalExceptionHandlerTest {
 
-    private final GlobalExceptionHandler handler = new GlobalExceptionHandler();
-    private final HttpServletRequest request = mock(HttpServletRequest.class);
+//    private final GlobalExceptionHandler handler = new GlobalExceptionHandler();
+//    private final HttpServletRequest request = mock(HttpServletRequest.class);
 
 
 //    @Test
