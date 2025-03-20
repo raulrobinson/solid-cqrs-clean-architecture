@@ -33,8 +33,8 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, basePath +"/users/find-user-by-id/*").permitAll()
-                        .requestMatchers(HttpMethod.GET, basePath + "/users/find-all-users").permitAll()
+                        .requestMatchers(HttpMethod.GET, basePath +"/users/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, basePath + "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, basePath +"/users/create-user").permitAll()
                         .requestMatchers(HttpMethod.PATCH, basePath +"/users/update-user/*").permitAll()
                         .requestMatchers(HttpMethod.DELETE, basePath +"/users/delete-user/*").permitAll()

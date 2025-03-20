@@ -1,12 +1,12 @@
 package com.example.ws.infrastructure.controllers;
 
-import com.example.ws.application.dtos.UserApplication;
-import com.example.ws.application.dtos.UserRequestDto;
+import com.example.ws.application.dto.UserApplication;
+import com.example.ws.application.dto.UserRequestDto;
 import com.example.ws.application.usecases.CreateUserUseCase;
 import com.example.ws.application.usecases.DeleteUserUseCase;
 import com.example.ws.application.usecases.UpdateUserUseCase;
 import com.example.ws.domain.entities.UserDomain;
-import com.example.ws.infrastructure.shared.mappers.UserMapper;
+import com.example.ws.application.mapper.UserMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

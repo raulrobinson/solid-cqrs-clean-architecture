@@ -1,6 +1,6 @@
 package com.example.ws.domain.repositories;
 
-import com.example.ws.application.dtos.UserRequestDto;
+import com.example.ws.application.dto.UserRequestDto;
 import com.example.ws.domain.entities.UserDomain;
 
 import java.util.List;

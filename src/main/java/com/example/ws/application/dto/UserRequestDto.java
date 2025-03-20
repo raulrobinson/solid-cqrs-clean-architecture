@@ -1,4 +1,4 @@
-package com.example.ws.application.dtos;
+package com.example.ws.application.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

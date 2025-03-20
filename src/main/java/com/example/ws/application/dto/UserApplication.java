@@ -1,4 +1,4 @@
-package com.example.ws.application.dtos;
+package com.example.ws.application.dto;
 
 public class UserApplication {
     private Long id;

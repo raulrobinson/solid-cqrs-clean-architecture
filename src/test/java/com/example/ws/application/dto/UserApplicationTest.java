@@ -1,4 +1,4 @@
-package com.example.ws.application.dtos;
+package com.example.ws.application.dto;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;

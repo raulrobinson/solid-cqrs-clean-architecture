@@ -121,6 +121,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -169,6 +177,11 @@
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.22</version>
+                        </path>
+                        <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
                             <version>1.5.5.Final</version>
@@ -193,6 +206,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>zip-files</id>
@@ -201,10 +215,8 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
-                                <mkdir dir="project.build.directory/docker" />
-                            </tasks>
                             <target>
+                                <mkdir dir="project.build.directory/docker" />
                                 <zip destfile="project.build.directory/app.zip">
                                     <zipfileset dir="project.build.directory/docker"
                                                 includes="microservices.jar" />

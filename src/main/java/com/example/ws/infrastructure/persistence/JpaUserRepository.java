@@ -1,10 +1,10 @@
 package com.example.ws.infrastructure.persistence;
 
-import com.example.ws.application.dtos.UserRequestDto;
+import com.example.ws.application.dto.UserRequestDto;
 import com.example.ws.domain.entities.UserDomain;
 import com.example.ws.domain.repositories.UserRepository;
 import com.example.ws.infrastructure.shared.exceptions.*;
-import com.example.ws.infrastructure.shared.mappers.UserMapper;
+import com.example.ws.application.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
 
