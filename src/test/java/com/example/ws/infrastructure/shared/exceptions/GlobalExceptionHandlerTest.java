@@ -18,6 +18,7 @@ class GlobalExceptionHandlerTest {
     private final GlobalExceptionHandler handler = new GlobalExceptionHandler();
     private final HttpServletRequest request = mock(HttpServletRequest.class);
 
+
 //    @Test
 //    void handleUserNotFoundException() {
 //        when(request.getRequestURI()).thenReturn("/users/1");
